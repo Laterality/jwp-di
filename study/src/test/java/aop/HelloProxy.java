@@ -8,6 +8,8 @@ import java.lang.reflect.Method;
 
 public class HelloProxy implements MethodInterceptor {
 
+    public static final String METHOD_NAME_PREFIX = "say";
+
     public static HelloTarget create() {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(HelloTarget.class);
@@ -18,6 +20,9 @@ public class HelloProxy implements MethodInterceptor {
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         String result = (String) methodProxy.invokeSuper(o, objects);
-        return result.toUpperCase();
+        if (method.getName().startsWith(METHOD_NAME_PREFIX)) {
+            return result.toUpperCase();
+        }
+        return result;
     }
 }

@@ -16,10 +16,12 @@ public class HelloTargetProxyTest {
         String hello = helloTarget.sayHello(name);
         String hi = helloTarget.sayHi(name);
         String thx = helloTarget.sayThankYou(name);
+        String pong = helloTarget.pingpong(name);
 
         // then
         assertThat(hello.toUpperCase()).isEqualTo(hello);
         assertThat(hi.toUpperCase()).isEqualTo(hi);
         assertThat(thx.toUpperCase()).isEqualTo(thx);
+        assertThat(pong).isEqualTo("Pong John");
     }
 }
